@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<th:block th:insert="~{fragments/header.html}"></th:block>
-<title>Movie-Ticket - Theatre Registration</title>
-<link rel="stylesheet" href="/css/signup.css">
+	<th:block th:insert="~{fragments/header.html}"></th:block>
+	<title>Movie-Ticket - Theatre Registration</title>
+	<link rel="stylesheet" href="/css/signup.css">
 </head>
+
 <body>
 	<th:block th:insert="~{fragments/navbar.html}"></th:block>
 	<th:block th:insert="~{fragments/message.html}"></th:block>
@@ -16,44 +18,39 @@
 					<h2 class="text-center mb-4">Theatre Registration</h2>
 					<form action="/theatre/signup" method="post" th:object="${theatre}">
 						<div class="mb-3">
-							<label for="name" class="form-label">Theatre Name</label> <input
-								type="text" class="form-control" th:field="*{name}" id="name"
-								name="name"> <span th:errors="*{name}"></span>
+							<label for="name" class="form-label">Theatre Name</label> <input type="text"
+								class="form-control" th:field="*{name}" id="name" name="name"> <span
+								th:errors="*{name}"></span>
 						</div>
 						<div class="mb-3">
 							<label for="address" class="form-label">Address</label>
-							<textarea class="form-control" id="address" name="address"
-								th:field="*{address}" rows="3"></textarea>
+							<textarea class="form-control" id="address" name="address" th:field="*{address}"
+								rows="3"></textarea>
 							<span th:errors="*{address}"></span>
 						</div>
 						<div class="mb-3">
-							<label for="mobile" class="form-label">Mobile</label> <input
-								type="tel" class="form-control" th:field="*{mobile}" id="mobile"
-								name="mobile"> <span th:errors="*{mobile}"></span>
+							<label for="mobile" class="form-label">Mobile</label> <input type="tel" class="form-control"
+								th:field="*{mobile}" id="mobile" name="mobile"> <span th:errors="*{mobile}"></span>
 						</div>
 						<div class="mb-3">
-							<label for="email" class="form-label">Email</label> <input
-								type="email" class="form-control" th:field="*{email}" id="email"
-								name="email"> <span th:errors="*{email}"></span>
+							<label for="email" class="form-label">Email</label> <input type="email" class="form-control"
+								th:field="*{email}" id="email" name="email"> <span th:errors="*{email}"></span>
 						</div>
 						<div class="mb-3">
-							<label for="password" class="form-label">Password</label> <input
-								type="password" class="form-control" th:field="*{password}"
-								id="password" name="password"> <span
+							<label for="password" class="form-label">Password</label> <input type="password"
+								class="form-control" th:field="*{password}" id="password" name="password"> <span
 								th:errors="*{password}"></span>
 						</div>
 						<div class="mb-3">
 							<label for="confirmPassword" class="form-label">Confirm
-								Password</label> <input type="password" class="form-control"
-								id="confirmPassword" name="confirmPassword"
-								th:field="*{confirmPassword}"> <span
+								Password</label> <input type="password" class="form-control" id="confirmPassword"
+								name="confirmPassword" th:field="*{confirmPassword}"> <span
 								th:errors="*{confirmPassword}"></span>
 						</div>
 						<div class="mb-3">
 							<label for="licenceNumber" class="form-label">Licence
-								Number</label> <input type="text" class="form-control"
-								id="licenceNumber" name="licenceNumber"
-								th:field="*{licenceNumber}"> <span
+								Number</label> <input type="text" class="form-control" id="licenceNumber"
+								name="licenceNumber" th:field="*{licenceNumber}"> <span
 								th:errors="*{licenceNumber}"></span>
 						</div>
 						<div class="d-grid">
@@ -75,4 +72,5 @@
 	<th:block th:insert="~{fragments/footer.html}"></th:block>
 
 </body>
+
 </html>

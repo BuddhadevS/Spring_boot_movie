@@ -23,7 +23,7 @@ public class CloudinaryHelper {
 		Cloudinary cloudinary = new Cloudinary(com.cloudinary.utils.ObjectUtils.asMap("cloud_name", my_cloud_name,
 				"api_key", my_api_key, "api_secret", my_api_secret, "secure", true));
 
-		Map resume = null;
+		 Map<String, Object> resume = null;
 		try {
 			Map<String, Object> uploadOptions = new HashMap<String, Object>();
 			uploadOptions.put("folder", "Movie Posters");

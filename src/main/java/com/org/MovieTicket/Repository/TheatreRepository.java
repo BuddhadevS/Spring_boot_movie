@@ -18,6 +18,5 @@ public interface TheatreRepository extends JpaRepository<Theatre, Integer>{
 	public Theatre findByMobile(long mobile);
 
 	public List<Theatre> findByApprovedFalseAndVerifiedTrue();
-;
 
 }

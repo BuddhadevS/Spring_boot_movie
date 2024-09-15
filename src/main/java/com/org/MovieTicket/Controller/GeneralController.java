@@ -16,12 +16,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.org.MovieTicket.Dto.Customer;
 import com.org.MovieTicket.Dto.Movie;
+import com.org.MovieTicket.Dto.Show;
 import com.org.MovieTicket.Dto.Theatre;
 import com.org.MovieTicket.Helper.AES;
 import com.org.MovieTicket.Helper.CloudinaryHelper;
 import com.org.MovieTicket.Helper.EmailSendingHelper;
 import com.org.MovieTicket.Repository.CustomerRepository;
 import com.org.MovieTicket.Repository.MovieRepository;
+import com.org.MovieTicket.Repository.ShowRepository;
 import com.org.MovieTicket.Repository.TheatreRepository;
 
 import jakarta.servlet.http.HttpSession;
@@ -39,6 +41,9 @@ public class GeneralController {
 	CloudinaryHelper cloudinaryHelper;
 
 	@Autowired
+	ShowRepository showRepository;
+
+	@Autowired
 	MovieRepository movieRepository;
 
 	@Autowired
@@ -50,7 +55,8 @@ public class GeneralController {
 	private String adminPassword;
 
 	@GetMapping("/")
-	public String loadMain() {
+	public String loadMain(ModelMap map) {
+		map.put("movies", movieRepository.findAll());
 		return "home.html";
 	}
 
@@ -246,6 +252,32 @@ public class GeneralController {
 		} else {
 			session.setAttribute("failure", "Invalid Session, Login Again");
 			return "redirect:/login";
+		}
+	}
+
+	@GetMapping("/movies")
+	public String loadAllMovies(ModelMap map, HttpSession session) {
+		List<Movie> movies = movieRepository.findAll();
+		if (movies.isEmpty()) {
+			session.setAttribute("failure", "No Movies Are Running");
+			return "redirect:/";
+		} else {
+			map.put("movies", movies);
+			return "view-movies.html";
+		}
+	}
+
+	@GetMapping("/shows/{id}")
+	public String loadAllShows(ModelMap map, HttpSession session, @PathVariable int id) {
+		Movie movie = movieRepository.findById(id).orElseThrow();
+		List<Show> shows = showRepository.findByMovieAndAvailableTrue(movie);
+
+		if (shows.isEmpty()) {
+			session.setAttribute("failure", "There are No Shows Running");
+			return "redirect:/";
+		} else {
+			map.put("shows", shows);
+			return "view-shows.html";
 		}
 	}
 
