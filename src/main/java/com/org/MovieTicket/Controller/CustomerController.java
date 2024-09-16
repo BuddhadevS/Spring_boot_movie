@@ -4,9 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.Random;
-
-import org.cloudinary.json.JSONObject;
-import org.hibernate.mapping.List;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -36,7 +34,6 @@ import com.org.MovieTicket.Repository.TheatreRepository;
 import com.razorpay.RazorpayClient;
 import com.razorpay.RazorpayException;
 
-import jakarta.persistence.criteria.Order;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
@@ -69,6 +66,8 @@ public class CustomerController {
 
 	@Autowired
 	SeatRepository seatRepository;
+	
+	
 
 	@GetMapping("/signup")
 	public String loadSignup(ModelMap map) {
@@ -182,11 +181,13 @@ public class CustomerController {
 			session.setAttribute("success", "Confirm Seat Details and do Payment");
 
 			RazorpayClient razorpay = new RazorpayClient(key, secret);
+			
+			
 			JSONObject orderRequest = new JSONObject();
 			orderRequest.put("amount", price * 100);
 			orderRequest.put("currency", "INR");
 
-			Order order = razorpay.orders.create(orderRequest);
+			com.razorpay.Order order = razorpay.orders.create(orderRequest);
 
 			map.put("key", key);
 			map.put("selectedSeats", selectedSeats);

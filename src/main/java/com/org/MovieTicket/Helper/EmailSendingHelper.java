@@ -48,7 +48,7 @@ public class EmailSendingHelper {
 			helper.setFrom("buddhadev0509@gmail.com", "Movie-Ticket-Site");
 			helper.setTo(theatre.getEmail());
 			helper.setSubject("Email Verification OTP");
-			Context context = new Context();
+			org.thymeleaf.context.Context context = new org.thymeleaf.context.Context();
 			context.setVariable("customer", theatre);
 			String body = templateEngine.process("my-email-template.html", context);
 			helper.setText(body, true);
@@ -65,7 +65,7 @@ public class EmailSendingHelper {
 			helper.setFrom("buddhadev0509@gmail.com", "Movie-Ticket-Site");
 			helper.setTo(customer.getEmail());
 			helper.setSubject("Booking Confirmation");
-			Context context = new Context();
+			org.thymeleaf.context.Context context = new org.thymeleaf.context.Context();
 			context.setVariable("customer", customer);
 			context.setVariable("booking", booking);
 			String body = templateEngine.process("booking-confirmation-template.html", context);
