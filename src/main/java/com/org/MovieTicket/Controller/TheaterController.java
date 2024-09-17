@@ -164,6 +164,7 @@ public class TheaterController {
 	}
 
 	@GetMapping("/add-show")
+
 	public String addShow(HttpSession session, ModelMap map) {
 		Theatre theatre = (Theatre) session.getAttribute("theatre");
 		if (theatre != null) {
